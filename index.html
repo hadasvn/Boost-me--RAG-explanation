@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מה זה RAG? ההסבר הכי טעים שיש | BOOST ME</title>
+<meta name="description" content="שף, מקרר, ופסטה בלי עגבניות — הסבר קצר וויזואלי על RAG (Retrieval-Augmented Generation) לכל מי שלא טכני. מבית BOOST ME.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="dots" aria-label="התקדמות בסיפור"></nav>
+
+<section class="scene" id="scene-0" style="--img:url('images/0-the-order.jpg')">
+  <div class="bg" style="background-image:var(--img)"></div>
+  <div class="scene-inner">
+    <span class="tag">QUERY</span>
+    <h2>אפשר בלי עגבניות?</h2>
+    <p>"אפשר להכין את הפסטה בלי עגבניות?" — לא להוריד, אלא להחליף. זה ה־Query: השאלה שה-AI מקבל.</p>
+  </div>
+</section>
+
+<section class="scene" id="scene-1" style="--img:url('images/1-the-fridge.jpg')">
+  <div class="bg" style="background-image:var(--img)"></div>
+  <div class="scene-inner">
+    <span class="tag">KNOWLEDGE BASE</span>
+    <h2>השף לא עונה מהזיכרון</h2>
+    <p>פותח את המקרר ובודק מה יש שם עכשיו — ממש הרגע. זה ה־Knowledge Base: כל המידע שאפשר לבדוק, בלי לזכור אותו מראש.</p>
+  </div>
+</section>
+
+<section class="scene" id="scene-2" style="--img:url('images/2-the-check.jpg')">
+  <div class="bg" style="background-image:var(--img)"></div>
+  <div class="scene-inner">
+    <span class="tag">RETRIEVAL</span>
+    <h2>בודק מה רלוונטי</h2>
+    <p>סורק את מה שיש, מחפש בדיוק מה יכול להחליף את העגבניות בלי להרוס את המנה. זה ה־Retrieval: לחפש תשובה במקום לנחש אותה.</p>
+    <button class="depth-btn" id="depth-open">🔍 הצצה למטבח</button>
+  </div>
+</section>
+
+<section class="scene" id="scene-3" style="--img:url('images/3-the-pick.jpg')">
+  <div class="bg" style="background-image:var(--img)"></div>
+  <div class="scene-inner">
+    <span class="tag">RANKING</span>
+    <h2>בוחר את התחליף המדויק</h2>
+    <p>מתוך כל מה שיכול לעבוד, בוחר רק את המדויק ביותר. זה ה־Ranking: לבחור את הכי מתאים מתוך כמה אפשרויות.</p>
+  </div>
+</section>
+
+<section class="scene" id="scene-4" style="--img:url('images/4-the-dish.jpg')">
+  <div class="bg" style="background-image:var(--img)"></div>
+  <div class="scene-inner">
+    <span class="tag">GENERATION</span>
+    <h2>מגיש עם הפתק</h2>
+    <p>מבשל, לא ממציא — ומצרף פתק שמראה בדיוק מה הוחלף. זה ה־Generation: תשובה שבנויה על מה שבאמת נמצא.</p>
+  </div>
+</section>
+
+<section class="scene reverse" id="scene-5" style="--img:url('images/5-boost-me.jpg')">
+  <div class="bg" style="background-image:var(--img)"></div>
+  <div class="scene-inner">
+    <span class="tag">HALLUCINATION</span>
+    <h2>ומה קורה בלי כל זה</h2>
+    <p>שף שהיה אומר "בטח, אין בעיה" בלי לבדוק — עלול להבטיח משהו שהוא לא יכול לקיים. זה ה־Hallucination: כשה-AI "בטוח" בתשובה בלי לבדוק אם היא נכונה.</p>
+    <a class="cta" href="https://wa.me/972545538883" target="_blank" rel="noopener">💬 דברו איתנו בוואטסאפ</a>
+    <a class="back-link" href="#scene-0">→ לתחילת הסיור</a>
+  </div>
+</section>
+
+<div class="depth-modal" id="depth-modal">
+  <div class="depth-card">
+    <button class="depth-close" id="depth-close" aria-label="סגירה">×</button>
+    <img src="images/2b-the-flavor-map.jpg" alt="צנצנות מתויגות לפי טעם">
+    <h3>איך השף בעצם מוצא?</h3>
+    <p>המקרר לא מסודר לפי א-ב. כל מצרך מתויג לפי הטעם והתפקיד שלו, לא לפי השם. מחפשים "משהו חמצמץ שיחליף עגבניות" — ומוצאים בול את זה, גם אם המילה "עגבניות" לא כתובה על שום דבר. זו השפה הסודית: כל פיסת מידע הופכת ל"קואורדינטות משמעות" (וקטורים / embeddings), ואפשר למצוא דברים דומים גם בלי התאמת מילים מדויקת.</p>
+    <div class="tech-note">
+      <strong>חיפוש רגיל (כמו גוגל):</strong> לפי מילים, על פני כל האינטרנט הפתוח, מחזיר רשימת קישורים.<br>
+      <strong>RAG:</strong> לפי משמעות (embeddings/וקטורים), בתוך מאגר סגור ומוגדר. ה-AI קורא את התוצאות ומנסח תשובה אחת קוהרנטית.
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <span>© BOOST ME</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
