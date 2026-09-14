@@ -5,38 +5,61 @@
   --olive:#8C8A3D;
 }
 *{box-sizing:border-box;}
-html{background:var(--vino);}
-body{margin:0;padding:0;background:var(--vino);color:var(--wheat);font-family:'Assistant',sans-serif;scroll-behavior:smooth;}
+html,body{margin:0;padding:0;background:var(--vino);color:var(--wheat);font-family:'Assistant',sans-serif;}
+@media (prefers-reduced-motion: no-preference){ html{ scroll-behavior:smooth; } }
 h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 
-.dots{position:fixed;top:50%;right:18px;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:20;}
-.dots button{width:10px;height:10px;border-radius:50%;background:rgba(243,231,206,.35);border:1px solid rgba(243,231,206,.55);cursor:pointer;padding:0;transition:background .3s,transform .3s;}
-.dots button.active{background:var(--terracotta);border-color:var(--terracotta);transform:scale(1.25);}
+.tour{position:relative;}
 
-.scene{position:relative;min-height:100vh;overflow:hidden;display:flex;direction:ltr;align-items:flex-end;justify-content:flex-start;}
-.scene.reverse{align-items:flex-start;}
-.scene .bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.001);transition:transform 9s ease-out;}
-.scene.active .bg{transform:scale(1.08);}
-#scene-0 .bg{background-position:30% center;}
-#scene-1 .bg{background-position:55% center;}
-#scene-2 .bg{background-position:48% center;}
-#scene-3 .bg{background-position:32% center;}
-#scene-4 .bg{background-position:38% center;}
-#scene-5 .bg{background-position:58% center;}
-.scene::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(0,0,0,.78) 0%, rgba(0,0,0,.5) 30%, rgba(0,0,0,0) 62%);}
+.progress{position:fixed;inset-inline-end:18px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:12px;z-index:30;}
+.progress i{width:10px;height:10px;border-radius:50%;background:rgba(243,231,206,.35);
+  border:1px solid rgba(243,231,206,.55);display:block;transition:background .3s,transform .3s;}
+.progress i.on{background:var(--terracotta);border-color:var(--terracotta);transform:scale(1.25);}
 
-.scene-inner{position:relative;z-index:2;direction:rtl;padding:36px min(8vw,72px);max-width:520px;}
+/* the pinned stage: stays fixed in the viewport while .track scrolls underneath it.
+   overflow:hidden must NOT sit on this element together with position:sticky — that
+   combination silently breaks sticky positioning in WebKit/mobile Safari. The clipping
+   needed for each layer's background lives on .layer instead (a descendant, not the
+   sticky element itself). */
+.stage{position:sticky;top:0;height:100svh;z-index:1;}
+.layer{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;
+  transition:opacity 1s ease;}
+.layer.on{opacity:1;visibility:visible;}
+.layer .bg{position:absolute;inset:-3%;background-size:cover;background-position:center;
+  transform:scale(1.001);}
+[data-i="0"] .bg{background-position:30% center;}
+[data-i="1"] .bg{background-position:55% center;}
+[data-i="2"] .bg{background-position:48% center;}
+[data-i="3"] .bg{background-position:32% center;}
+[data-i="4"] .bg{background-position:38% center;}
+[data-i="5"] .bg{background-position:58% center;}
+
+/* default: caption sits at the bottom, so the bottom of the frame darkens down to the
+   caption's contrast floor while the top (usually the face/subject) stays fully lit. */
+.layer::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.55) 62%, rgba(0,0,0,.9) 85%, rgba(0,0,0,.95) 100%);}
+.caption{position:absolute;inset-inline-start:0;inset-inline-end:0;bottom:0;
+  padding:0 min(8vw,72px) 9vh;z-index:2;direction:rtl;max-width:560px;}
+
+/* scenes 3 (PICK) and 4 (DISH): the thing that matters (the hand+bowl, the finished
+   plate) sits low in these two source photos, not high like the others — darkening the
+   bottom here would bury exactly what the caption is talking about. Flipped instead:
+   dark from the top down, caption up there, leaving the bottom of the frame fully lit. */
+[data-i="3"]::after, [data-i="4"]::after{
+  background:linear-gradient(180deg, rgba(0,0,0,.95) 0%, rgba(0,0,0,.9) 15%, rgba(0,0,0,.55) 38%, rgba(0,0,0,0) 70%);}
+[data-i="3"] .caption, [data-i="4"] .caption{bottom:auto;top:0;padding:9vh min(8vw,72px) 0;}
+
 .tag{display:inline-block;direction:ltr;font-family:'Courier New',monospace;letter-spacing:.15em;font-size:.72rem;
   color:var(--wheat);background:rgba(156,74,52,.55);border:1px solid var(--terracotta);
   padding:.3em .8em;border-radius:2px;margin-bottom:.8em;}
-.scene-inner h2{font-size:clamp(1.7rem,4.2vw,2.9rem);margin:.15em 0 .4em;}
-.scene-inner p{font-size:1.05rem;line-height:1.65;opacity:.95;max-width:34em;}
+.caption h2{font-size:clamp(1.7rem,4.2vw,2.9rem);margin:.15em 0 .4em;}
+.caption p{font-size:1.05rem;line-height:1.65;opacity:.95;max-width:34em;}
 
 .depth-btn{margin-top:1em;background:var(--olive);color:var(--wheat);border:none;
   padding:.65em 1.3em;border-radius:20px;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.95rem;font-weight:600;}
 .depth-btn:hover{filter:brightness(1.12);}
-.depth-btn:focus-visible, .cta:focus-visible, .back-link:focus-visible, .dots button:focus-visible, .depth-close:focus-visible{outline:2px solid var(--wheat);outline-offset:3px;}
+.depth-btn:focus-visible, .cta:focus-visible, .back-link:focus-visible, .progress i, .depth-close:focus-visible{outline:2px solid var(--wheat);outline-offset:3px;}
 
 .depth-modal{position:fixed;inset:0;background:rgba(20,10,14,.82);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;}
 .depth-modal.open{display:flex;}
@@ -53,19 +76,21 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .cta:hover{filter:brightness(1.12);}
 .back-link{display:block;margin-top:1em;color:var(--wheat);opacity:.75;text-decoration:underline;font-size:.9rem;}
 
+.track{position:relative;z-index:2;margin-top:-100svh;pointer-events:none;}
+.step{height:100svh;}
+
 .site-footer{position:relative;z-index:2;text-align:center;padding:28px 16px;background:var(--vino);
   font-size:.8rem;opacity:.7;direction:ltr;letter-spacing:.05em;font-family:'Courier New',monospace;}
 .site-footer a{color:var(--wheat);}
 
 @media (prefers-reduced-motion: reduce){
-  .scene .bg{transition:none;}
+  .layer{transition:none;}
+  .layer .bg{transition:none;}
 }
 @media (max-width:640px){
-  .scene-inner{padding:26px 20px;}
-  .dots{right:8px;gap:9px;}
-  .dots button{width:8px;height:8px;}
-  .scene::after{background:linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 42%, rgba(0,0,0,.05) 68%) !important;}
-  .scene.reverse::after{background:linear-gradient(to bottom, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 42%, rgba(0,0,0,.05) 68%) !important;}
-  .scene.reverse{align-items:flex-end;}
-  .scene .bg{background-size:contain !important;background-position:center !important;background-repeat:no-repeat;}
+  .caption{padding:0 20px 6vh;}
+  [data-i="3"] .caption, [data-i="4"] .caption{padding:6vh 20px 0;}
+  .progress{inset-inline-end:8px;gap:9px;}
+  .progress i{width:8px;height:8px;}
+  .layer .bg{background-size:contain !important;background-position:center !important;background-repeat:no-repeat;}
 }

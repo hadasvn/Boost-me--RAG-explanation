@@ -1,30 +1,62 @@
-const scenes = [...document.querySelectorAll('.scene')];
-const dotsNav = document.querySelector('.dots');
+(function () {
+  var stage = document.getElementById('stage');
+  var track = document.getElementById('track');
+  if (!stage || !track) return;
 
-scenes.forEach((s, i) => {
-  const b = document.createElement('button');
-  b.setAttribute('aria-label', 'סצנה ' + (i + 1));
-  b.addEventListener('click', () => s.scrollIntoView({ behavior: 'smooth' }));
-  dotsNav.appendChild(b);
-});
-const dotButtons = [...dotsNav.children];
-if (dotButtons[0]) dotButtons[0].classList.add('active');
+  var steps = Array.prototype.slice.call(track.querySelectorAll('.step'));
+  var layers = Array.prototype.slice.call(stage.querySelectorAll('.layer'));
+  var bgs = Array.prototype.slice.call(stage.querySelectorAll('.layer .bg'));
+  var dots = document.getElementById('progress');
 
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    const i = scenes.indexOf(entry.target);
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-      dotButtons.forEach(b => b.classList.remove('active'));
-      dotButtons[i].classList.add('active');
-    } else {
-      entry.target.classList.remove('active');
+  steps.forEach(function () { dots.appendChild(document.createElement('i')); });
+  var dotEls = Array.prototype.slice.call(dots.children);
+
+  function setActive(i) {
+    layers.forEach(function (l) {
+      l.classList.toggle('on', Number(l.getAttribute('data-i')) === i);
+    });
+    dotEls.forEach(function (d, idx) { d.classList.toggle('on', idx === i); });
+  }
+
+  var current = 0;
+  setActive(0);
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && e.intersectionRatio > 0.5) {
+        current = Number(e.target.getAttribute('data-i'));
+        setActive(current);
+      }
+    });
+  }, { threshold: [0, 0.5, 1] });
+  steps.forEach(function (s) { io.observe(s); });
+
+  // continuous ken-burns zoom tied to how far you've scrolled through the current step
+  function onScroll() {
+    var el = steps[current];
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var progress = Math.min(1, Math.max(0, (vh - r.top) / (r.height + vh)));
+    var scale = 1 + progress * 0.045;
+    var bg = bgs[current];
+    if (bg) bg.style.transform = 'scale(' + scale.toFixed(3) + ')';
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(function () { onScroll(); ticking = false; });
+      ticking = true;
     }
-  });
-}, { threshold: 0.5 });
-scenes.forEach(s => io.observe(s));
+  }, { passive: true });
+  onScroll();
 
-const modal = document.getElementById('depth-modal');
-document.getElementById('depth-open').addEventListener('click', () => modal.classList.add('open'));
-document.getElementById('depth-close').addEventListener('click', () => modal.classList.remove('open'));
-modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+  var modal = document.getElementById('depth-modal');
+  var openBtn = document.getElementById('depth-open');
+  var closeBtn = document.getElementById('depth-close');
+  if (modal && openBtn && closeBtn) {
+    openBtn.addEventListener('click', function () { modal.classList.add('open'); });
+    closeBtn.addEventListener('click', function () { modal.classList.remove('open'); });
+    modal.addEventListener('click', function (e) { if (e.target === modal) modal.classList.remove('open'); });
+  }
+})();
