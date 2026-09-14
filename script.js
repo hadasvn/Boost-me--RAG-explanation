@@ -11,11 +11,26 @@
   steps.forEach(function () { dots.appendChild(document.createElement('i')); });
   var dotEls = Array.prototype.slice.call(dots.children);
 
+  // lazy-load: the first scene's image ships eagerly in the HTML (fast LCP); every
+  // other scene only gets its background-image set right before it's needed, so the
+  // page doesn't fetch ~20MB of photos on load (was tanking LCP on slow connections).
+  function loadBg(i) {
+    var bg = bgs[i];
+    if (!bg) return;
+    var url = bg.getAttribute('data-bg');
+    if (url) {
+      bg.style.backgroundImage = "url('" + url + "')";
+      bg.removeAttribute('data-bg');
+    }
+  }
+
   function setActive(i) {
     layers.forEach(function (l) {
       l.classList.toggle('on', Number(l.getAttribute('data-i')) === i);
     });
     dotEls.forEach(function (d, idx) { d.classList.toggle('on', idx === i); });
+    loadBg(i);
+    loadBg(i + 1); // preload the next scene so it's ready by the time it's reached
   }
 
   var current = 0;
