@@ -22,7 +22,7 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
    combination silently breaks sticky positioning in WebKit/mobile Safari. The clipping
    needed for each layer's background lives on .layer instead (a descendant, not the
    sticky element itself). */
-.stage{position:sticky;top:0;height:100svh;z-index:1;}
+.stage{position:sticky;top:0;height:100vh;height:100svh;z-index:1;}
 .layer{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;
   transition:opacity 1s ease;}
 .layer.on{opacity:1;visibility:visible;}
@@ -40,7 +40,8 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .layer::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.55) 62%, rgba(0,0,0,.9) 85%, rgba(0,0,0,.95) 100%);}
 .caption{position:absolute;inset-inline-start:0;inset-inline-end:0;bottom:0;
-  padding:0 min(8vw,72px) 9vh;z-index:2;direction:rtl;max-width:560px;}
+  padding:0 min(8vw,72px) 9vh;z-index:2;direction:rtl;max-width:560px;
+  max-height:100%;overflow-y:auto;}
 
 /* scenes 3 (PICK) and 4 (DISH): the thing that matters (the hand+bowl, the finished
    plate) sits low in these two source photos, not high like the others — darkening the
@@ -77,7 +78,7 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .back-link{display:block;margin-top:1em;color:var(--wheat);opacity:.75;text-decoration:underline;font-size:.9rem;}
 
 .track{position:relative;z-index:2;margin-top:-100svh;pointer-events:none;}
-.step{height:100svh;}
+.step{height:100vh;height:100svh;}
 
 .site-footer{position:relative;z-index:2;text-align:center;padding:28px 16px;background:var(--vino);
   font-size:.8rem;opacity:.7;direction:ltr;letter-spacing:.05em;font-family:'Courier New',monospace;}
@@ -93,4 +94,17 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
   .progress{inset-inline-end:8px;gap:9px;}
   .progress i{width:8px;height:8px;}
   .layer .bg{background-size:contain !important;background-position:center !important;background-repeat:no-repeat;}
+}
+
+/* short/landscape phones: 100vh caption content (tag+title+paragraph+button) can be
+   taller than the viewport itself — shrink the type scale and padding so it still
+   fits, instead of relying only on the .caption overflow-y scroll as a last resort */
+@media (max-height:480px){
+  .caption{padding-top:8px;padding-bottom:8px;}
+  [data-i="3"] .caption, [data-i="4"] .caption{padding-top:8px;padding-bottom:8px;}
+  .caption h2{font-size:clamp(1.2rem,4vw,1.8rem);margin:.1em 0 .25em;}
+  .caption p{font-size:.9rem;line-height:1.4;}
+  .tag{margin-bottom:.4em;}
+  .cta{padding:.5em 1.1em;margin-top:.6em;}
+  .depth-btn{padding:.45em 1em;margin-top:.6em;}
 }
