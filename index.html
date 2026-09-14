@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="styles.css?v=11">
 </head>
 <body>
 
@@ -125,7 +125,10 @@
 </div>
 
 <footer class="site-footer">
-  <button type="button" class="legal-link" id="a11y-open">הצהרת נגישות</button>
+  <div class="legal-links">
+    <button type="button" class="legal-link" id="a11y-open">הצהרת נגישות</button>
+    <button type="button" class="legal-link" id="privacy-open">הצהרת פרטיות</button>
+  </div>
   <span>© BOOST ME</span>
 </footer>
 
@@ -138,6 +141,15 @@
   <p>לעמוד זה, המוצג באופן מקוון בלבד כנכס הסברתי, אין סניף פיזי.</p>
   <p>נתקלתם בבעיית נגישות? נשמח לדעת: <a href="mailto:meimagineai@gmail.com">meimagineai@gmail.com</a></p>
   <p>עדכון אחרון: 14.09.2026</p>
+</dialog>
+
+<dialog id="privacy-modal" class="legal-modal" aria-labelledby="privacy-modal-title">
+  <button type="button" class="legal-close" id="privacy-close" aria-label="סגירה">✕</button>
+  <h2 id="privacy-modal-title">הצהרת פרטיות</h2>
+  <p>העמוד הזה לא כולל שום טופס ולא אוסף ממך שום מידע אישי ישירות. פנייה אלינו נעשית באופן וולונטרי, בלחיצה על כפתור הוואטסאפ. כל פרט שתבחרו לשתף בשיחה (כגון שם או מספר טלפון) מועבר ישירות דרך WhatsApp, בהתאם למדיניות הפרטיות של Meta — לא נאסף או נשמר על ידי העמוד עצמו.</p>
+  <p>העמוד טוען גופנים מ-Google Fonts, מה שמעביר את כתובת ה-IP שלכם לגוגל לצורך הצגת הטקסט. לא מוצבים באתר עוגיות (Cookies) מעקב, אנליטיקס, או פרסום מכל סוג.</p>
+  <p>לשאלות בנוגע לפרטיות: <a href="mailto:meimagineai@gmail.com">meimagineai@gmail.com</a></p>
+  <p>עדכון אחרון: 15.09.2026</p>
 </dialog>
 
 <script src="script.js?v=3" defer></script>
