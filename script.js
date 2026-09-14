@@ -30,11 +30,19 @@
     });
     dotEls.forEach(function (d, idx) { d.classList.toggle('on', idx === i); });
     loadBg(i);
-    loadBg(i + 1); // preload the next scene so it's ready by the time it's reached
+    // preload the next scene ahead of time — but not on the very first activation,
+    // where it would compete for bandwidth with scene 0's own (eager, LCP-critical)
+    // image and defeat the point of lazy-loading.
+    if (i > 0) loadBg(i + 1);
   }
 
   var current = 0;
   setActive(0);
+
+  // once the browser is idle after the critical first paint (or after 3s at the
+  // latest), it's safe to start preloading scene 1 without competing with it.
+  var idle = window.requestIdleCallback || function (fn) { setTimeout(fn, 3000); };
+  idle(function () { loadBg(1); });
 
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
