@@ -11,6 +11,9 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 
 .tour{position:relative;}
 
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
 .progress{position:fixed;inset-inline-end:18px;top:50%;transform:translateY(-50%);
   display:flex;flex-direction:column;gap:12px;z-index:30;}
 .progress i{width:10px;height:10px;border-radius:50%;background:rgba(243,231,206,.35);
@@ -62,12 +65,12 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 [data-i="4"] .caption, [data-i="5"] .caption{bottom:auto;top:0;padding:9vh min(8vw,72px) 0;}
 
 .tag{display:inline-block;direction:ltr;font-family:'Courier New',monospace;letter-spacing:.15em;font-size:.72rem;
-  color:var(--wheat);background:rgba(156,74,52,.55);border:1px solid var(--terracotta);
+  color:var(--wheat);background:rgba(43,23,33,.82);border:1px solid var(--terracotta);
   padding:.3em .8em;border-radius:2px;margin-bottom:.8em;}
 .caption h2{font-size:clamp(1.7rem,4.2vw,2.9rem);margin:.15em 0 .4em;}
 .caption p{font-size:1.05rem;line-height:1.65;opacity:.95;max-width:34em;}
 
-.depth-btn{margin-top:1em;background:var(--olive);color:var(--wheat);border:none;
+.depth-btn{margin-top:1em;background:var(--olive);color:var(--vino);border:none;
   padding:.65em 1.3em;border-radius:20px;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.95rem;font-weight:600;}
 .depth-btn:hover{filter:brightness(1.12);}
 .depth-btn:focus-visible, .cta:focus-visible, .back-link:focus-visible, .progress i, .depth-close:focus-visible{outline:2px solid var(--wheat);outline-offset:3px;}
@@ -82,7 +85,7 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .depth-card .tech-note{font-size:.9rem;background:rgba(156,74,52,.12);border-inline-start:3px solid var(--terracotta);padding:.6em .9em;border-radius:4px;}
 .depth-close{position:absolute;top:10px;left:10px;background:none;border:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--vino);}
 
-.cta{display:inline-flex;align-items:center;gap:.5em;background:var(--olive);color:var(--wheat);
+.cta{display:inline-flex;align-items:center;gap:.5em;background:var(--olive);color:var(--vino);
   padding:.75em 1.5em;border-radius:24px;text-decoration:none;font-weight:700;margin-top:1.1em;}
 .cta:hover{filter:brightness(1.12);}
 .back-link{display:block;margin-top:1em;color:var(--wheat);opacity:.75;text-decoration:underline;font-size:.9rem;}

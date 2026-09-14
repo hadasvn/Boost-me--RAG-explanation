@@ -8,9 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
+
+<h1 class="sr-only">מה זה RAG (Retrieval-Augmented Generation) — הסבר ויזואלי מבית BOOST ME</h1>
 
 <main class="tour" id="tour">
   <nav class="progress" id="progress" aria-hidden="true"></nav>
@@ -19,7 +21,7 @@
   <div class="stage" id="stage">
 
     <div class="layer" data-i="0">
-      <div class="bg" style="background-image:url('images/intro-welcome.jpg')"></div>
+      <div class="bg" role="img" aria-label="מטבח כפרי איטלקי בשעת ערב, מקרר פתוח ושולחן אוכל דולק ברקע" style="background-image:url('images/intro-welcome.jpg')"></div>
       <div class="caption">
         <span class="tag">RAG</span>
         <h2>לפני שמתחילים לבשל</h2>
@@ -28,7 +30,7 @@
     </div>
 
     <div class="layer" data-i="1">
-      <div class="bg" style="background-image:url('images/0-the-order.jpg')"></div>
+      <div class="bg" role="img" aria-label="יד סועד מושיטה פתק הזמנה דרך חלון מעבר אל תוך המטבח" style="background-image:url('images/0-the-order.jpg')"></div>
       <div class="caption">
         <span class="tag">QUERY</span>
         <h2>אפשר להחליף עגבניות?</h2>
@@ -37,7 +39,7 @@
     </div>
 
     <div class="layer" data-i="2">
-      <div class="bg" style="background-image:url('images/1-the-fridge.jpg')"></div>
+      <div class="bg" role="img" aria-label="השף פותח דלת מקרר וינטג' גדול, אור קריר בוקע מבפנים" style="background-image:url('images/1-the-fridge.jpg')"></div>
       <div class="caption">
         <span class="tag">KNOWLEDGE BASE</span>
         <h2>השף לא עונה מהזיכרון</h2>
@@ -46,7 +48,7 @@
     </div>
 
     <div class="layer" data-i="3">
-      <div class="bg" style="background-image:url('images/2-the-check.jpg')"></div>
+      <div class="bg" role="img" aria-label="השף רוכן לתוך המקרר הפתוח, בודק בין הירקות והצנצנות" style="background-image:url('images/2-the-check.jpg')"></div>
       <div class="caption">
         <span class="tag">RETRIEVAL</span>
         <h2>בודק מה רלוונטי</h2>
@@ -56,7 +58,7 @@
     </div>
 
     <div class="layer" data-i="4">
-      <div class="bg" style="background-image:url('images/3-the-pick.jpg')"></div>
+      <div class="bg" role="img" aria-label="יד השף מרימה קערת זיתים מתוך מדף המקרר" style="background-image:url('images/3-the-pick.jpg')"></div>
       <div class="caption">
         <span class="tag">RANKING</span>
         <h2>בוחר את התחליף המדויק</h2>
@@ -65,7 +67,7 @@
     </div>
 
     <div class="layer" data-i="5">
-      <div class="bg" style="background-image:url('images/4-the-dish.jpg')"></div>
+      <div class="bg" role="img" aria-label="צלחת פסטה מוכנה על דלפק עץ, ליד פתק כתוב יד" style="background-image:url('images/4-the-dish.jpg')"></div>
       <div class="caption">
         <span class="tag">GENERATION</span>
         <h2>מגיש עם הפתק</h2>
@@ -74,7 +76,7 @@
     </div>
 
     <div class="layer" data-i="6">
-      <div class="bg" style="background-image:url('images/5-boost-me.jpg')"></div>
+      <div class="bg" role="img" aria-label="השף מגיש צלחת פסטה דרך חלון המעבר לסועד" style="background-image:url('images/5-boost-me.jpg')"></div>
       <div class="caption reverse">
         <span class="tag">HALLUCINATION</span>
         <h2>ומה קורה בלי כל זה</h2>
@@ -83,7 +85,7 @@
     </div>
 
     <div class="layer summary" data-i="7">
-      <div class="bg" style="background-image:url('images/summary-closing.png')"></div>
+      <div class="bg" role="img" aria-label="מבט-על על דלפק המטבח בסיום הבישול, מקרר פתוח ברקע, צלחת מוכנה ופתק בחזית" style="background-image:url('images/summary-closing.png')"></div>
       <div class="summary-inner">
         <div class="chain">
           <span>Query</span><i>→</i><span>Knowledge Base</span><i>→</i><span>Retrieval</span><i>→</i><span>Ranking</span><i>→</i><span>Generation</span>
@@ -109,11 +111,11 @@
   </div>
 </main>
 
-<div class="depth-modal" id="depth-modal">
+<div class="depth-modal" id="depth-modal" role="dialog" aria-modal="true" aria-labelledby="depth-modal-title" aria-hidden="true">
   <div class="depth-card">
     <button type="button" class="depth-close" id="depth-close" aria-label="סגירה">×</button>
     <img src="images/2b-the-flavor-map.jpg" alt="צנצנות מתויגות לפי טעם">
-    <h3>איך השף בעצם מוצא?</h3>
+    <h3 id="depth-modal-title">איך השף בעצם מוצא?</h3>
     <p>המקרר לא מסודר לפי א-ב. כל מצרך מתויג לפי הטעם והתפקיד שלו, לא לפי השם. מחפשים "משהו חמצמץ שיחליף עגבניות" — ומוצאים בול את זה, גם אם המילה "עגבניות" לא כתובה על שום דבר. זו השפה הסודית: כל פיסת מידע הופכת ל"קואורדינטות משמעות" (וקטורים / embeddings), ואפשר למצוא דברים דומים גם בלי התאמת מילים מדויקת.</p>
     <div class="tech-note">
       <strong>חיפוש רגיל (כמו גוגל):</strong> לפי מילים, על פני כל האינטרנט הפתוח, מחזיר רשימת קישורים.<br>
@@ -126,6 +128,6 @@
   <span>© BOOST ME</span>
 </footer>
 
-<script src="script.js?v=2" defer></script>
+<script src="script.js?v=3" defer></script>
 </body>
 </html>

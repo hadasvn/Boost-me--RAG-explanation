@@ -31,8 +31,11 @@
   }, { threshold: [0, 0.5, 1] });
   steps.forEach(function (s) { io.observe(s); });
 
-  // continuous ken-burns zoom tied to how far you've scrolled through the current step
+  // continuous ken-burns zoom tied to how far you've scrolled through the current step —
+  // skipped entirely when the user has asked the OS for reduced motion, not just eased.
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function onScroll() {
+    if (reduceMotion) return;
     var el = steps[current];
     if (!el) return;
     var r = el.getBoundingClientRect();
@@ -55,8 +58,32 @@
   var openBtn = document.getElementById('depth-open');
   var closeBtn = document.getElementById('depth-close');
   if (modal && openBtn && closeBtn) {
-    openBtn.addEventListener('click', function () { modal.classList.add('open'); });
-    closeBtn.addEventListener('click', function () { modal.classList.remove('open'); });
-    modal.addEventListener('click', function (e) { if (e.target === modal) modal.classList.remove('open'); });
+    var lastFocused = null;
+    function openModal() {
+      lastFocused = document.activeElement;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.removeEventListener('keydown', onKeydown);
+      if (lastFocused) lastFocused.focus();
+    }
+    function onKeydown(e) {
+      if (e.key === 'Escape') { closeModal(); return; }
+      // simple focus trap: Tab/Shift+Tab cycle only within the two focusable
+      // elements the modal actually has (close button, image needs none, so
+      // this covers the realistic case — extend if more controls are added).
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        closeBtn.focus();
+      }
+    }
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   }
 })();
