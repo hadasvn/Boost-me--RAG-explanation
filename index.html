@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
@@ -125,9 +125,22 @@
 </div>
 
 <footer class="site-footer">
+  <button type="button" class="legal-link" id="a11y-open">הצהרת נגישות</button>
   <span>© BOOST ME</span>
 </footer>
 
+<dialog id="a11y-modal" class="legal-modal" aria-labelledby="a11y-modal-title">
+  <button type="button" class="legal-close" id="a11y-close" aria-label="סגירה">✕</button>
+  <h2 id="a11y-modal-title">הצהרת נגישות</h2>
+  <p>עמוד זה נבנה מתוך מחויבות לאפשר שימוש נוח לכלל הגולשים, בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג–2013, ברמת התאמה AA לפי תקן ת"י 5568 / WCAG 2.1.</p>
+  <p>ההנגשות שבוצעו: מבנה כותרות תקין, טקסט חלופי לכל תמונות הרקע עבור קוראי מסך, ניגודיות צבעים העומדת בדרישות התקן על הכפתורים והתגיות, ניווט מקלדת מלא כולל סגירת חלון המידע הנוסף במקש Escape וניהול פוקוס תקין, וכיבוד הגדרת "הפחתת תנועה" של מערכת ההפעלה (מבטל את אפקט הזום).</p>
+  <p>הבדיקה בוצעה באמצעות סקירת קוד ידנית מול תקן ת"י 5568 / WCAG 2.1 ברמה AA. בדיקה עם קורא מסך אמיתי טרם בוצעה.</p>
+  <p>לעמוד זה, המוצג באופן מקוון בלבד כנכס הסברתי, אין סניף פיזי.</p>
+  <p>נתקלתם בבעיית נגישות? נשמח לדעת: <a href="mailto:meimagineai@gmail.com">meimagineai@gmail.com</a></p>
+  <p>עדכון אחרון: 14.09.2026</p>
+</dialog>
+
 <script src="script.js?v=3" defer></script>
+<script src="legal-modals.js?v=1" defer></script>
 </body>
 </html>
