@@ -17,6 +17,14 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
   border:1px solid rgba(243,231,206,.55);display:block;transition:background .3s,transform .3s;}
 .progress i.on{background:var(--terracotta);border-color:var(--terracotta);transform:scale(1.25);}
 
+/* small persistent brand mark — a fixed physical side (right), deliberately not tied
+   to inline-start/end, so it never flips or swaps sides with the progress dots. */
+.brand-mark{position:fixed;top:16px;right:16px;z-index:35;height:26px;width:auto;
+  filter:drop-shadow(0 1px 4px rgba(0,0,0,.6));pointer-events:none;}
+@media (max-width:640px){
+  .brand-mark{height:20px;top:12px;right:12px;}
+}
+
 /* the pinned stage: stays fixed in the viewport while .track scrolls underneath it.
    overflow:hidden must NOT sit on this element together with position:sticky — that
    combination silently breaks sticky positioning in WebKit/mobile Safari. The clipping
