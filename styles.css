@@ -77,6 +77,22 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .cta:hover{filter:brightness(1.12);}
 .back-link{display:block;margin-top:1em;color:var(--wheat);opacity:.75;text-decoration:underline;font-size:.9rem;}
 
+/* the summary layer has no photo — it's a plain "title card" pause between the
+   pipeline scenes and the closing scene, so it gets its own centered layout instead
+   of the photo+caption treatment, and the photo gradient overlay is turned off. */
+.layer.summary{display:flex;align-items:center;justify-content:center;background:var(--vino);}
+.layer.summary::after{display:none;}
+.summary-inner{position:relative;z-index:2;text-align:center;max-width:680px;padding:0 24px;}
+.chain{display:flex;flex-wrap:wrap;justify-content:center;gap:.5em;
+  font-family:'Courier New',monospace;font-size:.8rem;letter-spacing:.03em;opacity:.7;
+  direction:ltr;margin-bottom:1.6em;}
+.chain span{border:1px solid var(--terracotta);padding:.25em .7em;border-radius:2px;}
+.chain i{font-style:normal;opacity:.5;}
+.rag-reveal{font-size:clamp(4rem,14vw,8.5rem);margin:0 0 .25em;letter-spacing:.02em;
+  color:var(--wheat);direction:ltr;}
+.summary-inner p{font-size:1.1rem;line-height:1.7;opacity:.92;max-width:46ch;margin:0 auto;}
+.summary-inner strong{color:var(--terracotta);}
+
 .track{position:relative;z-index:2;margin-top:-100svh;pointer-events:none;}
 .step{height:100vh;height:100svh;}
 
@@ -107,4 +123,7 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
   .tag{margin-bottom:.4em;}
   .cta{padding:.5em 1.1em;margin-top:.6em;}
   .depth-btn{padding:.45em 1em;margin-top:.6em;}
+  .rag-reveal{font-size:clamp(2.5rem,10vw,4rem);}
+  .chain{margin-bottom:.8em;}
+  .summary-inner p{font-size:.9rem;line-height:1.4;}
 }

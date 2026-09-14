@@ -22,7 +22,7 @@
       <div class="caption">
         <span class="tag">QUERY</span>
         <h2>אפשר בלי עגבניות?</h2>
-        <p>"אפשר להכין את הפסטה בלי עגבניות?" — לא להוריד, אלא להחליף. זה ה־Query: השאלה שה-AI מקבל.</p>
+        <p>"אפשר להחליף את העגבניות בפסטה הזו?" — שאלה שאי אפשר לענות עליה מהזיכרון. זה ה־Query: השאלה שה-AI מקבל.</p>
       </div>
     </div>
 
@@ -63,7 +63,17 @@
       </div>
     </div>
 
-    <div class="layer" data-i="5">
+    <div class="layer summary" data-i="5">
+      <div class="summary-inner">
+        <div class="chain">
+          <span>Query</span><i>→</i><span>Knowledge Base</span><i>→</i><span>Retrieval</span><i>→</i><span>Ranking</span><i>→</i><span>Generation</span>
+        </div>
+        <h2 class="rag-reveal">RAG</h2>
+        <p>שאלה שבודקים במקור חי, מחפשים בו נכון, בוחרים את הכי מתאים, ובונים מזה תשובה — זה כל הסיפור. השרשרת הזו נקראת <strong>Retrieval-Augmented Generation</strong>, בקיצור: RAG.</p>
+      </div>
+    </div>
+
+    <div class="layer" data-i="6">
       <div class="bg" style="background-image:url('images/5-boost-me.jpg')"></div>
       <div class="caption reverse">
         <span class="tag">HALLUCINATION</span>
@@ -83,6 +93,7 @@
     <div class="step" data-i="3"></div>
     <div class="step" data-i="4"></div>
     <div class="step" data-i="5"></div>
+    <div class="step" data-i="6"></div>
   </div>
 </main>
 
