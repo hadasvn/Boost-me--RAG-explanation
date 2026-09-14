@@ -110,13 +110,16 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .track{position:relative;z-index:2;margin-top:-100svh;pointer-events:none;}
 .step{height:100vh;height:100svh;}
 
-.site-footer{position:relative;z-index:2;text-align:center;padding:28px 16px;background:var(--vino);
-  font-size:.8rem;letter-spacing:.05em;font-family:'Courier New',monospace;
-  display:flex;flex-direction:column;align-items:center;gap:10px;}
+/* fixed footer bar — always reachable (legal links especially) without scrolling
+   through all 8 pinned scenes to reach the very end of the page. */
+.site-footer{position:fixed;inset-inline:0;bottom:0;z-index:25;text-align:center;
+  padding:8px 16px;background:rgba(43,23,33,.88);backdrop-filter:blur(4px);
+  font-size:.75rem;letter-spacing:.05em;font-family:'Courier New',monospace;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;}
 .site-footer > span{opacity:.7;direction:ltr;}
-.legal-links{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;}
+.legal-links{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
 .legal-link{background:none;border:none;color:var(--wheat);opacity:.75;text-decoration:underline;
-  cursor:pointer;font-family:'Assistant',sans-serif;font-size:.85rem;letter-spacing:normal;padding:4px;}
+  cursor:pointer;font-family:'Assistant',sans-serif;font-size:.8rem;letter-spacing:normal;padding:4px;}
 .legal-link:hover, .legal-link:focus-visible{opacity:1;}
 
 .legal-modal{background:var(--wheat);color:var(--vino);border:3px solid var(--terracotta);
