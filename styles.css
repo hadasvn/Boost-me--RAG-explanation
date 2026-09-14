@@ -34,8 +34,8 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 [data-i="3"] .bg{background-position:48% center;}
 [data-i="4"] .bg{background-position:32% center;}
 [data-i="5"] .bg{background-position:38% center;}
-[data-i="6"] .bg{background-position:35% center;}
-[data-i="7"] .bg{background-position:58% center;}
+[data-i="6"] .bg{background-position:58% center;}
+[data-i="7"] .bg{background-position:35% center;}
 
 /* default: caption sits at the bottom, so the bottom of the frame darkens down to the
    caption's contrast floor while the top (usually the face/subject) stays fully lit. */
