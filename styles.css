@@ -128,6 +128,9 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .legal-modal a{color:var(--terracotta);}
 .draft-notice{background:rgba(156,74,52,.15);border:1px solid var(--terracotta);
   border-radius:6px;padding:.7em .9em;font-weight:700;}
+.terms-list{padding-inline-start:1.4em;margin:0 0 .9em;}
+.terms-list li{line-height:1.6;font-size:.95rem;margin-bottom:.7em;}
+.terms-list li::marker{color:var(--terracotta);font-weight:700;}
 .legal-close{position:absolute;top:10px;left:10px;background:none;border:none;
   font-size:1.6rem;line-height:1;cursor:pointer;color:var(--vino);}
 .legal-close:focus-visible{outline:2px solid var(--terracotta);outline-offset:2px;}
