@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -18,6 +18,15 @@
   <div class="stage" id="stage">
 
     <div class="layer" data-i="0">
+      <div class="bg" style="background-image:url('images/intro-welcome.jpg')"></div>
+      <div class="caption">
+        <span class="tag">BOOST ME</span>
+        <h2>לפני שמתחילים לבשל</h2>
+        <p>מטבח, שף בטוח, ומקרר מלא. זה בעצם משל על איך AI טוב עונה על שאלות — לא ממציא, אלא בודק קודם. בואו נראה איך זה עובד.</p>
+      </div>
+    </div>
+
+    <div class="layer" data-i="1">
       <div class="bg" style="background-image:url('images/0-the-order.jpg')"></div>
       <div class="caption">
         <span class="tag">QUERY</span>
@@ -26,7 +35,7 @@
       </div>
     </div>
 
-    <div class="layer" data-i="1">
+    <div class="layer" data-i="2">
       <div class="bg" style="background-image:url('images/1-the-fridge.jpg')"></div>
       <div class="caption">
         <span class="tag">KNOWLEDGE BASE</span>
@@ -35,7 +44,7 @@
       </div>
     </div>
 
-    <div class="layer" data-i="2">
+    <div class="layer" data-i="3">
       <div class="bg" style="background-image:url('images/2-the-check.jpg')"></div>
       <div class="caption">
         <span class="tag">RETRIEVAL</span>
@@ -45,7 +54,7 @@
       </div>
     </div>
 
-    <div class="layer" data-i="3">
+    <div class="layer" data-i="4">
       <div class="bg" style="background-image:url('images/3-the-pick.jpg')"></div>
       <div class="caption">
         <span class="tag">RANKING</span>
@@ -54,7 +63,7 @@
       </div>
     </div>
 
-    <div class="layer" data-i="4">
+    <div class="layer" data-i="5">
       <div class="bg" style="background-image:url('images/4-the-dish.jpg')"></div>
       <div class="caption">
         <span class="tag">GENERATION</span>
@@ -63,7 +72,8 @@
       </div>
     </div>
 
-    <div class="layer summary" data-i="5">
+    <div class="layer summary" data-i="6">
+      <div class="bg" style="background-image:url('images/summary-closing.jpg')"></div>
       <div class="summary-inner">
         <div class="chain">
           <span>Query</span><i>→</i><span>Knowledge Base</span><i>→</i><span>Retrieval</span><i>→</i><span>Ranking</span><i>→</i><span>Generation</span>
@@ -73,7 +83,7 @@
       </div>
     </div>
 
-    <div class="layer" data-i="6">
+    <div class="layer" data-i="7">
       <div class="bg" style="background-image:url('images/5-boost-me.jpg')"></div>
       <div class="caption reverse">
         <span class="tag">HALLUCINATION</span>
@@ -94,6 +104,7 @@
     <div class="step" data-i="4"></div>
     <div class="step" data-i="5"></div>
     <div class="step" data-i="6"></div>
+    <div class="step" data-i="7"></div>
   </div>
 </main>
 
