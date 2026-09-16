@@ -70,7 +70,7 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .caption h2{font-size:clamp(1.7rem,4.2vw,2.9rem);margin:.15em 0 .4em;}
 .caption p{font-size:1.05rem;line-height:1.65;opacity:.95;max-width:34em;}
 
-.depth-btn{margin-top:1em;background:var(--olive);color:var(--vino);border:none;
+.depth-btn{display:table;margin-top:1em;margin-right:auto;margin-left:0;background:var(--olive);color:var(--vino);border:none;
   padding:.65em 1.3em;border-radius:20px;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.95rem;font-weight:600;}
 .depth-btn:hover{filter:brightness(1.12);}
 .depth-btn:focus-visible, .cta:focus-visible, .back-link:focus-visible, .progress i, .depth-close:focus-visible{outline:2px solid var(--wheat);outline-offset:3px;}
