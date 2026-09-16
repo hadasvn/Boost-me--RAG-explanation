@@ -148,6 +148,14 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
   .progress{inset-inline-end:8px;gap:9px;}
   .progress i{width:8px;height:8px;}
   .layer .bg{background-size:cover !important;background-position:center !important;}
+  /* per-scene horizontal crop focus — cover on a narrow phone shows only ~25% of
+     each image's width, so the default center crop misses off-center subjects
+     (e.g. THE PICK's olive bowl sits at ~28% of the frame, not 50%) */
+  [data-i="1"] .bg{background-position:60% center !important;}
+  [data-i="2"] .bg{background-position:40% center !important;}
+  [data-i="4"] .bg{background-position:28% center !important;}
+  [data-i="5"] .bg{background-position:42% center !important;}
+  [data-i="6"] .bg{background-position:68% center !important;}
 }
 
 /* short/landscape phones: 100vh caption content (tag+title+paragraph+button) can be
