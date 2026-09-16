@@ -108,7 +108,7 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .summary-inner strong{color:var(--terracotta);}
 
 .track{position:relative;z-index:2;margin-top:-100svh;pointer-events:none;}
-.step{height:100vh;height:100svh;}
+.step{height:170vh;height:170svh;}
 
 /* fixed footer bar — always reachable (legal links especially) without scrolling
    through all 8 pinned scenes to reach the very end of the page. */
