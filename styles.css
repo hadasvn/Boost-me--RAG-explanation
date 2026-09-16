@@ -70,7 +70,7 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
 .caption h2{font-size:clamp(1.7rem,4.2vw,2.9rem);margin:.15em 0 .4em;}
 .caption p{font-size:1.05rem;line-height:1.65;opacity:.95;max-width:34em;}
 
-.depth-btn{display:table;margin-top:1em;margin-right:auto;margin-left:0;background:var(--olive);color:var(--vino);border:none;
+.depth-btn{float:left;clear:both;margin-top:1em;background:var(--olive);color:var(--vino);border:none;
   padding:.65em 1.3em;border-radius:20px;cursor:pointer;font-family:'Assistant',sans-serif;font-size:.95rem;font-weight:600;}
 .depth-btn:hover{filter:brightness(1.12);}
 .depth-btn:focus-visible, .cta:focus-visible, .back-link:focus-visible, .progress i, .depth-close:focus-visible{outline:2px solid var(--wheat);outline-offset:3px;}
@@ -147,15 +147,7 @@ h2,h3{font-family:'Suez One',serif;font-weight:400;text-wrap:balance;}
   [data-i="4"] .caption, [data-i="5"] .caption{padding:6vh 20px 0;}
   .progress{inset-inline-end:8px;gap:9px;}
   .progress i{width:8px;height:8px;}
-  .layer .bg{background-size:cover !important;background-position:center !important;}
-  /* per-scene horizontal crop focus — cover on a narrow phone shows only ~25% of
-     each image's width, so the default center crop misses off-center subjects
-     (e.g. THE PICK's olive bowl sits at ~28% of the frame, not 50%) */
-  [data-i="1"] .bg{background-position:60% center !important;}
-  [data-i="2"] .bg{background-position:40% center !important;}
-  [data-i="4"] .bg{background-position:28% center !important;}
-  [data-i="5"] .bg{background-position:42% center !important;}
-  [data-i="6"] .bg{background-position:68% center !important;}
+  .layer .bg{background-size:cover !important;}
 }
 
 /* short/landscape phones: 100vh caption content (tag+title+paragraph+button) can be
